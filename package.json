@@ -10,6 +10,7 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
+  "proxy": "http://13.124.148.179:8080",
   "browserslist": {
     "production": [
       ">0.2%",

@@ -17,7 +17,6 @@ export const CategoryHeroSection = ({ categoryId }: Props) => {
   if (!currentTheme) {
     return null;
   }
-
   const { color, name, description } = currentTheme;
 
   return (

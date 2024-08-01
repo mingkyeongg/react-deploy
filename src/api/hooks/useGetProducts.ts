@@ -4,15 +4,24 @@ import {
   type UseInfiniteQueryResult,
 } from '@tanstack/react-query';
 
-import type { ProductData } from '@/types';
-
-import { BASE_URL } from '../instance';
 import { fetchInstance } from './../instance/index';
 
 type RequestParams = {
   categoryId: string;
   pageToken?: string;
   maxResults?: number;
+};
+
+type ProductData = {
+  id: number;
+  name: string;
+  price: number;
+  imageurl: string;
+  category: {
+    id: number;
+    name: string;
+    products: ProductData[];
+  };
 };
 
 type ProductsResponseData = {
@@ -25,12 +34,21 @@ type ProductsResponseData = {
 };
 
 type ProductsResponseRawData = {
-  content: ProductData[];
-  number: number;
-  totalElements: number;
-  size: number;
-  last: boolean;
+  httpResult: {
+    statusCode: number;
+    message: string;
+  };
+  domain: {
+    products: {
+      content: ProductData[];
+      number: number;
+      totalElements: number;
+      size: number;
+      last: boolean;
+    };
+  }[];
 };
+
 
 export const getProductsPath = ({ categoryId, pageToken, maxResults }: RequestParams) => {
   const params = new URLSearchParams();
@@ -40,12 +58,13 @@ export const getProductsPath = ({ categoryId, pageToken, maxResults }: RequestPa
   if (pageToken) params.append('page', pageToken);
   if (maxResults) params.append('size', maxResults.toString());
 
-  return `${BASE_URL}/api/products?${params.toString()}`;
+  return `/api/products?${params.toString()}`;
 };
 
 export const getProducts = async (params: RequestParams): Promise<ProductsResponseData> => {
   const response = await fetchInstance.get<ProductsResponseRawData>(getProductsPath(params));
-  const data = response.data;
+  const data = response.data.domain[0].products;
+  console.log('data here', data);
 
   return {
     products: data.content,
@@ -58,6 +77,7 @@ export const getProducts = async (params: RequestParams): Promise<ProductsRespon
 };
 
 type Params = Pick<RequestParams, 'maxResults' | 'categoryId'> & { initPageToken?: string };
+
 export const useGetProducts = ({
   categoryId,
   maxResults = 20,
