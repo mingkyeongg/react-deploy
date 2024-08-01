@@ -10,6 +10,7 @@ import { OrderPage } from '@/pages/Order';
 
 import { PrivateRoute } from './components/PrivateRoute';
 import { RouterPath } from './path';
+import KakaoCallbackPage from '@/pages/Login/KakaoCallbackPage';
 
 const router = createBrowserRouter([
   {
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
   {
     path: RouterPath.login,
     element: <LoginPage />,
+  },
+  {
+    path: RouterPath.redirect,
+    element: <KakaoCallbackPage />,
   },
 ]);
 

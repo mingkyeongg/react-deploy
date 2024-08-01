@@ -10,7 +10,9 @@ export type ProductDetailRequestParams = {
 
 type Props = ProductDetailRequestParams;
 
-export type GoodsDetailResponseData = ProductData;
+export type GoodsDetailResponseData = {
+  data: ProductData;
+};
 
 export const getProductDetailPath = (productId: string) => `/api/products/${productId}`;
 
@@ -18,9 +20,7 @@ export const getProductDetail = async (params: ProductDetailRequestParams) => {
   const response = await fetchInstance.get<GoodsDetailResponseData>(
     getProductDetailPath(params.productId),
   );
-
-  console.log('response', response);
-  return response.data;
+  return response.data.data;
 };
 
 export const useGetProductDetail = ({ productId }: Props) => {

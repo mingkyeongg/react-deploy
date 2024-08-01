@@ -15,7 +15,7 @@ type Props = ProductDetailRequestParams;
 
 export const OptionSection = ({ productId }: Props) => {
   const { data: detail } = useGetProductDetail({ productId });
-  const { data: options } = useGetProductOptions({ productId });
+  const { data: data } = useGetProductOptions({ productId });
 
   const [countAsString, setCountAsString] = useState('1');
   const totalPrice = useMemo(() => {
@@ -74,7 +74,7 @@ export const OptionSection = ({ productId }: Props) => {
 
   return (
     <Box p="30px 12px 30px 30px" h="100%" display="flex" flexDirection="column" justifyContent="space-between">
-      <CountOptionItem name={options[0].name} value={countAsString} onChange={setCountAsString} />
+      <CountOptionItem name={data.data[0].name} value={countAsString} onChange={setCountAsString} />
       <Box mt="auto">
         <Flex justifyContent="space-between" mb="20px" p="18px 20px" borderRadius="4px" bg="#f5f5f5">
           <Text fontSize="14px" fontWeight="700" lineHeight="14px" color="#111">총 결제 금액</Text>

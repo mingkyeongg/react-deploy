@@ -5,7 +5,7 @@ import type { CategoryData } from '@/types';
 import { fetchInstance } from '../instance';
 
 export type CategoryResponseData = {
-    domain: CategoryData[];
+    data: CategoryData[];
 };
 
 export const getCategoriesPath = () => `/api/categories`;
@@ -13,7 +13,7 @@ const categoriesQueryKey = [getCategoriesPath()];
 
 export const getCategories = async () => {
   const response = await fetchInstance.get<CategoryResponseData>(getCategoriesPath());
-  return response.data.domain;
+  return response.data.data;
 };
 
 export const useGetCategories = () =>
