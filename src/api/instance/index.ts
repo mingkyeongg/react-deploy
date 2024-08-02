@@ -16,7 +16,7 @@ const initInstance = (config: AxiosRequestConfig): AxiosInstance => {
   return instance;
 };
 
-export const BASE_URL = '';
+export const BASE_URL = 'http://54.180.245.166:8080';
 // TODO: 추후 서버 API 주소 변경 필요
 export const fetchInstance = initInstance({
   baseURL: BASE_URL,

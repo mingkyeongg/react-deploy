@@ -13,7 +13,6 @@
     "deploy": "gh-pages -d build"
   },
   "homepage": "https://mingkyeongg.github.io/react-deploy/",
-  "proxy": "http://54.180.245.166:8080",
   "browserslist": {
     "production": [
       ">0.2%",

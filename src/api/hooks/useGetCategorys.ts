@@ -8,7 +8,7 @@ export type CategoryResponseData = {
     data: CategoryData[];
 };
 
-export const getCategoriesPath = () => `/api/categories`;
+export const getCategoriesPath = () => `api/categories`;
 const categoriesQueryKey = [getCategoriesPath()];
 
 export const getCategories = async () => {
