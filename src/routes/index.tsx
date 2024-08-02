@@ -14,7 +14,7 @@ import { RouterPath } from './path';
 
 const AppRoutes = () => {
   return (
-    <BrowserRouter basename={process.env.PUBLIC_URL}>
+    <BrowserRouter basename="/react-deploy">
       <Routes>
         <Route path={RouterPath.root} element={<Layout />}>
           <Route path={RouterPath.home} element={<HomePage />} />
