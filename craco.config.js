@@ -15,13 +15,4 @@ module.exports = {
       setupFilesAfterEnv: ['<rootDir>/src/setupTests.ts'],
     },
   },
-  devServer: {
-    proxy: {
-      '/api': {
-        target: 'http://54.180.245.166:8080',
-        changeOrigin: true,
-        pathRewrite: { '^/api': '' },
-      },
-    },
-  },
 };
