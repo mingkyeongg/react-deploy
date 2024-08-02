@@ -1,4 +1,5 @@
 const path = require('path');
+const { createProxyMiddleware } = require('http-proxy-middleware');
 
 module.exports = {
   webpack: {
@@ -12,6 +13,15 @@ module.exports = {
         '^@/(.*)$': '<rootDir>/src/$1',
       },
       setupFilesAfterEnv: ['<rootDir>/src/setupTests.ts'],
+    },
+  },
+  devServer: {
+    proxy: {
+      '/api': {
+        target: 'http://54.180.245.166:8080',
+        changeOrigin: true,
+        pathRewrite: { '^/api': '' },
+      },
     },
   },
 };
