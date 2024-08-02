@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Container } from '@/components/common/layouts/Container';
 import { useAuth } from '@/provider/Auth';
 import { getDynamicPath, RouterPath } from '@/routes/path';
+import { Select } from '@chakra-ui/react';
 
 export const Header = () => {
   const navigate = useNavigate();
@@ -12,6 +13,12 @@ export const Header = () => {
   const handleLogin = () => {
     navigate(getDynamicPath.login());
   };
+
+  const APIList = [
+    { value: '1', label: '박혜연' },
+    { value: '2', label: '이진솔' },
+    { value: '3', label: '김상해' },
+  ];
 
   return (
     <Wrapper>
@@ -23,6 +30,13 @@ export const Header = () => {
           />
         </Link>
         <RightWrapper>
+          <Select size="xs" placeholder="백엔드 API 선택">
+              {APIList.map(api => (
+                <option key={api.value} value={api.value}>
+                  {api.label}
+                </option>
+              ))}
+            </Select>
           {authInfo ? (
             <LinkButton onClick={() => navigate(RouterPath.myAccount)}>내 계정</LinkButton>
           ) : (
@@ -49,12 +63,19 @@ export const Wrapper = styled.header`
 const Logo = styled.img`
   height: ${HEADER_HEIGHT};
 `;
-const RightWrapper = styled.div``;
+const RightWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  `;
 
 const LinkButton = styled.p`
+  display: flex;
   align-items: center;
+  gap: 8px;
   font-size: 14px;
   color: #000;
   text-decoration: none;
   cursor: pointer;
+  width: 100px;
 `;

@@ -21,7 +21,7 @@ export const KakaoCallbackPage: React.FC = () => {
         if (data.http_result === 'OK') {
           const accessToken = data.data;
           console.log('Access Token:', accessToken);
-          localStorage.setItem('accessToken', accessToken);
+          localStorage.setItem('authToken', accessToken);
           navigate('/');
         } else {
           console.error('Error: ', data.message);

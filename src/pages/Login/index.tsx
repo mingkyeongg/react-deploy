@@ -5,7 +5,7 @@ import { Button } from '@/components/common/Button';
 import { Spacing } from '@/components/common/layouts/Spacing';
 
 export const LoginPage: React.FC = () => {
-  const authorizeUrl = 'http://54.180.245.166:8080/api/oauth/authorize';
+  const authorizeUrl = 'api/oauth/authorize';
 
   const handleLogin = () => {
     window.location.href = authorizeUrl;
