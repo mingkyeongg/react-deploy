@@ -1,5 +1,4 @@
 const path = require('path');
-const { createProxyMiddleware } = require('http-proxy-middleware');
 
 module.exports = {
   webpack: {
@@ -18,9 +17,10 @@ module.exports = {
   devServer: {
     proxy: {
       '/api': {
-        target: 'http://54.180.245.166:8080',
+        target: 'https://43.203.28.55:8080/',
         changeOrigin: true,
         pathRewrite: { '^/api': '' },
+        secure: false, // SSL 인증서 오류 무시
       },
     },
   },
