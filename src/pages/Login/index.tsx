@@ -4,11 +4,14 @@ import KAKAO_LOGO from '@/assets/kakao_logo.svg';
 import { Button } from '@/components/common/Button';
 import { Spacing } from '@/components/common/layouts/Spacing';
 
+const REST_API_KEY = 'cbb227fe87de25de54c477577d349447';
+const REDIRECT_URI = 'http://localhost:3000/react-deploy/api/oauth/token';
+const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
+
 export const LoginPage: React.FC = () => {
-  const authorizeUrl = 'api/oauth/authorize';
 
   const handleLogin = () => {
-    window.location.href = authorizeUrl;
+    window.location.href = KAKAO_AUTH_URL;
   };
 
   return (
